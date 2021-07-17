@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModel()
-    private var userNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +23,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         reset()
+        viewModel.getRandomNumber()
         setupObserves()
         binding.btnSend.setOnClickListener {
             reset()
-            userNumber = binding.etNumber.text.toString().toInt()
+            val userNumber = binding.etNumber.text.toString().toInt()
+            compareNumbers(userNumber)
             defineNumberDisplay(userNumber)
-
         }
     }
+
+    private fun compareNumbers(userNumber: Int) {
+        binding.tvResult.visibility = VISIBLE
+        val randomNumber = viewModel.randomNumberLiveData.value?.value
+        Log.i("teste", "$randomNumber")
+        when {
+            userNumber > (randomNumber ?: 0) -> {
+                binding.tvResult.text = resources.getText(R.string.is_bigger)
+            }
+            userNumber < (randomNumber ?: 0) -> {
+                binding.tvResult.text = resources.getText(R.string.is_smaller)
+            }
+            else -> {
+                binding.tvResult.text = resources.getText(R.string.matches)
+                binding.btnNewMatch.visibility = VISIBLE
+                binding.btnSend.isEnabled = false
+                newMatch()
+            }
+        }
+    }
+
 
 
     private fun reset() {
@@ -68,21 +89,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserves() {
-        viewModel.randomNumberLiveData.observe(this, {
-            it?.let { randomNumber ->
-                binding.tvResult.visibility = VISIBLE
-                if(userNumber > randomNumber.value ){
-                    binding.tvResult.text = resources.getText(R.string.is_bigger)
-                }else if(userNumber < randomNumber.value){
-                    binding.tvResult.text = resources.getText(R.string.is_smaller)
-                }else{
-                    binding.tvResult.text = resources.getText(R.string.matches)
-                    binding.btnNewMatch.visibility = VISIBLE
-                    binding.btnSend.isEnabled = false
-                    newMatch()
-                }
-            }
-        })
 
         viewModel.errorMsgLiveData.observe(this, {
             it?.let {
@@ -92,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 binding.etNumber.text = null
 
                 reset()
-                defineNumberDisplay(it.toInt(), true)
+                defineNumberDisplay(it.toInt())
                 Log.i("teste", it)
                 binding.tvResult.apply{
                     text = resources.getText(R.string.error)
@@ -113,16 +119,13 @@ class MainActivity : AppCompatActivity() {
                 binding.tilNumber.isEnabled = true
                 binding.btnSend.isEnabled = true
                 binding.etNumber.text = null
+                viewModel.getRandomNumber()
             }
         }
 
     }
 
-    private fun defineNumberDisplay(number: Int, error: Boolean = false) {
-
-        if(!error){
-            viewModel.getRandomNumber()
-        }
+    private fun defineNumberDisplay(number: Int) {
 
         when (number.toString().length) {
             1 -> {
