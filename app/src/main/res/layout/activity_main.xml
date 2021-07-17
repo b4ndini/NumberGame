@@ -7,7 +7,7 @@
     android:background="@color/background_color"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".MainActivity">
+    tools:context=".view.activity.MainActivity">
 
     <TextView
         android:id="@+id/tvResult"
@@ -35,6 +35,7 @@
 
         <include
             android:id="@+id/Three"
+
             layout="@layout/number_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +43,9 @@
             app:layout_constraintEnd_toStartOf="@id/Two" />
 
         <include
+
             android:id="@+id/Two"
+
             layout="@layout/number_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,6 +54,7 @@
             app:layout_constraintTop_toTopOf="@id/container" />
 
         <include
+
             android:id="@+id/One"
             layout="@layout/number_layout"
             android:layout_width="wrap_content"
@@ -62,7 +66,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/tvNewMatch"
+        android:id="@+id/btnNewMatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -82,18 +86,19 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="20dp"
-        android:hint="@string/hint_text"
         android:paddingStart="-15dp"
         android:paddingEnd="-15dp"
         app:boxBackgroundColor="@color/background_color"
         app:counterEnabled="true"
         app:counterMaxLength="3"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnSend"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNumber"
+            android:hint="@string/hint_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"

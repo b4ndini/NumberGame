@@ -3,4 +3,8 @@
     <string name="hint_text">Digite o palpite</string>
     <string name="send_button_hint">Enviar</string>
     <string name="new_match_button_hint">Nova Partida</string>
+    <string name="is_bigger">É maior</string>
+    <string name="is_smaller">É menor</string>
+    <string name="matches">Acertou!</string>
+    <string name="error">Erro</string>
 </resources>
