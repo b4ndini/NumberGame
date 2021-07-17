@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             reset()
             userNumber = binding.etNumber.text.toString().toInt()
             defineNumberDisplay(userNumber)
+
         }
     }
 
@@ -77,12 +78,18 @@ class MainActivity : AppCompatActivity() {
                 }else{
                     binding.tvResult.text = resources.getText(R.string.matches)
                     binding.btnNewMatch.visibility = VISIBLE
+                    binding.btnSend.isEnabled = false
+                    newMatch()
                 }
             }
         })
 
         viewModel.errorMsgLiveData.observe(this, {
             it?.let {
+
+                binding.btnSend.isEnabled = false
+                binding.tilNumber.isEnabled = false
+                binding.etNumber.text = null
 
                 reset()
                 defineNumberDisplay(it.toInt(), true)
@@ -91,20 +98,31 @@ class MainActivity : AppCompatActivity() {
                     text = resources.getText(R.string.error)
                     visibility = VISIBLE
                 }
-                binding.tilNumber.isEnabled = false
-                binding.etNumber.text = null
-                binding.btnNewMatch.visibility = VISIBLE
-                binding.btnSend.isEnabled = false
+
+                newMatch()
             }
         })
 
     }
 
+    private fun newMatch() {
+        binding.btnNewMatch.apply{
+            visibility = VISIBLE
+            setOnClickListener {
+                reset()
+                binding.tilNumber.isEnabled = true
+                binding.btnSend.isEnabled = true
+                binding.etNumber.text = null
+            }
+        }
+
+    }
+
     private fun defineNumberDisplay(number: Int, error: Boolean = false) {
+
         if(!error){
             viewModel.getRandomNumber()
         }
-
 
         when (number.toString().length) {
             1 -> {
