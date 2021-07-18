@@ -10,7 +10,7 @@ interface RandomNumberApi {
     @GET("rand")
     suspend fun number(
         @Query("min") min : Int = 1,
-        @Query("max") max : Int = 300,
+        @Query("max") max : Int = 300
     ): Response<RandomNumber>
 
 

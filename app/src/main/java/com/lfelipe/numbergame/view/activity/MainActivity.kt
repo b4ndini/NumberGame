@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        reset()
+        resetDisplay()
         viewModel.getRandomNumber()
         setupObserves()
         binding.btnSend.setOnClickListener {
-            reset()
+            resetDisplay()
             val userNumber = binding.etNumber.text.toString().toInt()
             compareNumbers(userNumber)
             defineNumberDisplay(userNumber)
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun reset() {
+    private fun resetDisplay() {
         binding.tvResult.visibility = INVISIBLE
         binding.btnNewMatch.visibility = INVISIBLE
         binding.container.visibility = INVISIBLE
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                 binding.tilNumber.isEnabled = false
                 binding.etNumber.text = null
 
-                reset()
+                resetDisplay()
                 defineNumberDisplay(it.toInt())
                 Log.i("teste", it)
                 binding.tvResult.apply{
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnNewMatch.apply{
             visibility = VISIBLE
             setOnClickListener {
-                reset()
+                resetDisplay()
                 binding.tilNumber.isEnabled = true
                 binding.btnSend.isEnabled = true
                 binding.etNumber.text = null
