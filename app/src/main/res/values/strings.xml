@@ -7,4 +7,5 @@
     <string name="is_smaller">É menor</string>
     <string name="matches">Acertou!</string>
     <string name="error">Erro</string>
+    <string name="empty_text_input">Campo vazio. Digite um palpite.</string>
 </resources>

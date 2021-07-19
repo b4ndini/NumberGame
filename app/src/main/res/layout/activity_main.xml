@@ -92,6 +92,7 @@
         app:counterEnabled="true"
         app:counterMaxLength="3"
         app:hintEnabled="false"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnSend"
         app:layout_constraintStart_toStartOf="parent">

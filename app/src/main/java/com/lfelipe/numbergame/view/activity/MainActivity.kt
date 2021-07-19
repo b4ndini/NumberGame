@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.*
+import androidx.core.widget.doOnTextChanged
 import com.lfelipe.numbergame.R
 import com.lfelipe.numbergame.databinding.ActivityMainBinding
 import com.lfelipe.numbergame.databinding.NumberLayoutBinding
@@ -25,11 +26,24 @@ class MainActivity : AppCompatActivity() {
         resetDisplay()
         viewModel.getRandomNumber()
         setupObserves()
+        inputTextObserver()
+
         binding.btnSend.setOnClickListener {
-            resetDisplay()
-            val userNumber = binding.etNumber.text.toString().toInt()
-            compareNumbers(userNumber)
-            defineNumberDisplay(userNumber)
+            val userNumber = binding.etNumber.text.toString()
+            if (userNumber.isBlank()) {
+                binding.tilNumber.error = getString(R.string.empty_text_input)
+            } else {
+                resetDisplay()
+                compareNumbers(userNumber.toInt())
+                defineNumberDisplay(userNumber.toInt())
+
+            }
+        }
+    }
+
+    private fun inputTextObserver() {
+        binding.etNumber.doOnTextChanged { _, _, _, _ ->
+            binding.tilNumber.isErrorEnabled = false
         }
     }
 
@@ -54,12 +68,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun resetDisplay() {
         binding.tvResult.visibility = INVISIBLE
         binding.btnNewMatch.visibility = INVISIBLE
         binding.container.visibility = INVISIBLE
-        binding.One.apply{
+        binding.One.apply {
             ivBottomStart.alpha = IS_VISIBLE
             ivBottom.alpha = IS_VISIBLE
             ivBottomEnd.alpha = IS_VISIBLE
@@ -100,7 +113,7 @@ class MainActivity : AppCompatActivity() {
                 resetDisplay()
                 defineNumberDisplay(it.toInt())
                 Log.i("teste", it)
-                binding.tvResult.apply{
+                binding.tvResult.apply {
                     text = resources.getText(R.string.error)
                     visibility = VISIBLE
                 }
@@ -112,7 +125,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun newMatch() {
-        binding.btnNewMatch.apply{
+        binding.btnNewMatch.apply {
             visibility = VISIBLE
             setOnClickListener {
                 resetDisplay()
@@ -165,12 +178,12 @@ class MainActivity : AppCompatActivity() {
 
             0 -> view.ivCenter.alpha = NOT_VISIBLE
             1 -> view.apply {
-                    ivBottom.alpha = NOT_VISIBLE
-                    ivCenter.alpha = NOT_VISIBLE
-                    ivTop.alpha = NOT_VISIBLE
-                    ivTopStart.alpha = NOT_VISIBLE
-                    ivBottomStart.alpha = NOT_VISIBLE
-                }
+                ivBottom.alpha = NOT_VISIBLE
+                ivCenter.alpha = NOT_VISIBLE
+                ivTop.alpha = NOT_VISIBLE
+                ivTopStart.alpha = NOT_VISIBLE
+                ivBottomStart.alpha = NOT_VISIBLE
+            }
             2 -> view.apply {
                 ivTopStart.alpha = NOT_VISIBLE
                 ivBottomEnd.alpha = NOT_VISIBLE
@@ -179,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                 ivBottomStart.alpha = NOT_VISIBLE
                 ivTopStart.alpha = NOT_VISIBLE
             }
-            4 -> view.apply{
+            4 -> view.apply {
                 ivTop.alpha = NOT_VISIBLE
                 ivBottom.alpha = NOT_VISIBLE
                 ivBottomStart.alpha = NOT_VISIBLE
@@ -192,7 +205,7 @@ class MainActivity : AppCompatActivity() {
                 ivTop.alpha = NOT_VISIBLE
                 ivTopEnd.alpha = NOT_VISIBLE
             }
-            7 -> view.apply{
+            7 -> view.apply {
                 ivTopStart.alpha = NOT_VISIBLE
                 ivCenter.alpha = NOT_VISIBLE
                 ivBottom.alpha = NOT_VISIBLE
@@ -206,7 +219,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 
 
 }
