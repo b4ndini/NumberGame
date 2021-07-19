@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="themeColorHex">
+        <item>#EA1E63</item>
+        <item>#b62b6e</item>
+        <item>#7b1b53</item>
+        <item>#9628c6</item>
+        <item>#662978</item>
+        <item>#214184</item>
+        <item>#4169e1</item>
+        <item>#87ceeb</item>
+        <item>#000000</item>
+        <item>#437467</item>
+        <item>#43594a</item>
+        <item>#98c807</item>
+        <item>#627d0f</item>
+        <item>#468101</item>
+        <item>#6d6118</item>
+        <item>#d13814</item>
+        <item>#912610</item>
+        <item>#b09a11</item>
+        <item>#ef9421</item>
+        <item>#edd812</item>
+    </string-array>
+</resources>

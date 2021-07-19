@@ -8,4 +8,7 @@
     <string name="matches">Acertou!</string>
     <string name="error">Erro</string>
     <string name="empty_text_input">Campo vazio. Digite um palpite.</string>
+    <string name="display_size">Display Size</string>
+    <string name="color_picker">Color Picker</string>
+    <string name="color_picker_dialog_text">Escolha a cor do display:</string>
 </resources>

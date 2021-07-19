@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View.*
 import androidx.core.widget.doOnTextChanged
+import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
+import com.github.dhaval2404.colorpicker.model.ColorShape
+import com.github.dhaval2404.colorpicker.model.ColorSwatch
 import com.lfelipe.numbergame.R
 import com.lfelipe.numbergame.databinding.ActivityMainBinding
 import com.lfelipe.numbergame.databinding.NumberLayoutBinding
 import com.lfelipe.numbergame.util.Api.IS_VISIBLE
 import com.lfelipe.numbergame.util.Api.NOT_VISIBLE
+import com.lfelipe.numbergame.util.setColor
 import com.lfelipe.numbergame.viewModel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getRandomNumber()
         setupObserves()
         inputTextObserver()
+        setupMenu()
 
         binding.btnSend.setOnClickListener {
             val userNumber = binding.etNumber.text.toString()
@@ -37,6 +42,34 @@ class MainActivity : AppCompatActivity() {
                 compareNumbers(userNumber.toInt())
                 defineNumberDisplay(userNumber.toInt())
 
+            }
+        }
+    }
+
+    private fun setupMenu() {
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.displaySize-> {
+                    // Handle favorite icon press
+                    true
+                }
+                R.id.colorPicker -> {
+                    MaterialColorPickerDialog
+                        .Builder(this@MainActivity)
+                        .setTitle(R.string.color_picker_dialog_text)
+                        .setColors(resources.getStringArray(R.array.themeColorHex))
+                        .setColorShape(ColorShape.SQAURE)
+                        .setColorSwatch(ColorSwatch._300)
+                        .setDefaultColor(R.color.main_color)
+                        .setColorListener { color, _ ->
+                            binding.One.setColor(color)
+                            binding.Two.setColor(color)
+                            binding.Three.setColor(color)
+                        }
+                        .show()
+                    true
+                }
+                else -> false
             }
         }
     }

@@ -56,5 +56,7 @@ dependencies {
     //View Model e Live Data
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    //Color Picker Library
+    implementation 'com.github.dhaval2404:colorpicker:2.0'
 
 }

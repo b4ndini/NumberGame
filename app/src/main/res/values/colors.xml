@@ -11,4 +11,6 @@
     <color name="main_color_variation">#AD174A</color>
     <color name="background_color">#FAFAFA</color>
     <color name="button_color">#E0E0E0</color>
+    <color name="positiveButtonTextColor">@color/main_color</color>
+    <color name="negativeButtonTextColor">@color/main_color</color>
 </resources>

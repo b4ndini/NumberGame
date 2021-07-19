@@ -1,72 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/numberContainer"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:id="@+id/numberContainer"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_margin="2dp">
 
     <ImageView
         android:id="@+id/ivTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/main_color"
         android:src="@drawable/horizontal_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivTopStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ivTop"
-        app:layout_constraintTop_toTopOf="@id/ivTop"
+        android:background="@color/main_color"
         android:src="@drawable/vertical_rectangle"
-        />
+        app:layout_constraintStart_toStartOf="@id/ivTop"
+        app:layout_constraintTop_toTopOf="@id/ivTop" />
 
     <ImageView
         android:id="@+id/ivTopEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/ivTop"
-        app:layout_constraintTop_toTopOf="@id/ivTop"
+        android:background="@color/main_color"
         android:src="@drawable/vertical_rectangle"
-        />
+        app:layout_constraintEnd_toEndOf="@id/ivTop"
+        app:layout_constraintTop_toTopOf="@id/ivTop" />
 
     <ImageView
         android:id="@+id/ivCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ivTop"
-        app:layout_constraintBottom_toBottomOf="@id/ivTopStart"
+        android:background="@color/main_color"
         android:src="@drawable/horizontal_rectangle"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/ivTopStart"
+        app:layout_constraintStart_toStartOf="@id/ivTop" />
 
     <ImageView
         android:id="@+id/ivBottomStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ivTop"
-        app:layout_constraintTop_toTopOf="@id/ivCenter"
+        android:background="@color/main_color"
         android:src="@drawable/vertical_rectangle"
-        />
+        app:layout_constraintStart_toStartOf="@id/ivTop"
+        app:layout_constraintTop_toTopOf="@id/ivCenter" />
 
     <ImageView
         android:id="@+id/ivBottomEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/ivTop"
-        app:layout_constraintTop_toTopOf="@id/ivCenter"
+        android:background="@color/main_color"
         android:src="@drawable/vertical_rectangle"
-        />
+        app:layout_constraintEnd_toEndOf="@id/ivTop"
+        app:layout_constraintTop_toTopOf="@id/ivCenter" />
 
     <ImageView
         android:id="@+id/ivBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ivTop"
-        app:layout_constraintBottom_toBottomOf="@id/ivBottomStart"
+        android:background="@color/main_color"
         android:src="@drawable/horizontal_rectangle"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/ivBottomStart"
+        app:layout_constraintStart_toStartOf="@id/ivTop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
