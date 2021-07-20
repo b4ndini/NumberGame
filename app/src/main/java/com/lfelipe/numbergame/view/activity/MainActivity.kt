@@ -2,18 +2,22 @@ package com.lfelipe.numbergame.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View.*
 import androidx.core.widget.doOnTextChanged
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
+import com.google.android.material.slider.Slider
 import com.lfelipe.numbergame.R
 import com.lfelipe.numbergame.databinding.ActivityMainBinding
 import com.lfelipe.numbergame.databinding.NumberLayoutBinding
 import com.lfelipe.numbergame.util.Api.IS_VISIBLE
 import com.lfelipe.numbergame.util.Api.NOT_VISIBLE
 import com.lfelipe.numbergame.util.setColor
+import com.lfelipe.numbergame.util.setSize
 import com.lfelipe.numbergame.viewModel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,7 +54,25 @@ class MainActivity : AppCompatActivity() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.displaySize-> {
-                    // Handle favorite icon press
+                    binding.slDisplaySize.visibility = VISIBLE
+                    binding.slDisplaySize.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
+                        override fun onStartTrackingTouch(slider: Slider) {
+                        }
+
+                        override fun onStopTrackingTouch(slider: Slider) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                slider.visibility = GONE
+                            }, 3000)
+                        }
+                    })
+
+                    binding.slDisplaySize.addOnChangeListener { _, value, _ ->
+                        binding.slDisplaySize.visibility = VISIBLE
+                        binding.One.setSize(value.toInt())
+                        binding.Two.setSize(value.toInt())
+                        binding.Three.setSize(value.toInt())
+
+                    }
                     true
                 }
                 R.id.colorPicker -> {

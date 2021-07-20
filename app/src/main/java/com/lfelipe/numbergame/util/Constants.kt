@@ -1,7 +1,5 @@
 package com.lfelipe.numbergame.util
 
-import androidx.collection.arraySetOf
-
 object Api {
 
     const val BASE_URL = "https://us-central1-ss-devops.cloudfunctions.net/"
